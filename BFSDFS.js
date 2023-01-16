@@ -54,11 +54,19 @@ function bfs(start) {
 }
 bfs("PHX"); // found or not found
 
-function dfs(start, visited=new Set()){
-  console.log(start);
-  visited.add(start);
+function dfs(start, visited = new Set(), step) {
+	visited.add(start);
+	const destinations = adjacencyList.get(start);
 
-  const desti
+	for (const destination of destinations) {
+		if (destination === "BKK") {
+			console.log(`DFS found BKK ${step}in steps`);
+			return;
+		}
+		if (!visited.has(destination)) {
+			dfs(destination, visited, step + 1);
+		}
+	}
 }
-
-
+const a = new Set();
+dfs("PHX", a, 1);
