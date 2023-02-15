@@ -55,6 +55,7 @@ console.log(result);
 const solve2 = (n) => {
 	let count = 0;
 	const result = [];
+
 	const jump = (len, circle, pos) => {
 		if (Object.keys(circle).length === len) {
 			count++;
@@ -74,10 +75,12 @@ const solve2 = (n) => {
 			}
 		}
 	};
+
 	for (let i = 2; i <= n; i++) {
 		const circle = { 0: 1 };
 		jump(i, circle, 0);
 	}
+
 	console.log(count);
 	return result;
 };
