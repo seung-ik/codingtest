@@ -1,5 +1,6 @@
 // 나이트가 갈수있는 위치 그래프 만들고 재귀
 // 나머지 방문 회로는 돌아오는거
+// 그래프랑 백트래킹 조합하는 좋은 문제
 function getGraph(n, m) {
 	const x_move = [-2, -1, 1, 2, -2, -1, 2, 1];
 	const y_move = [-1, -2, -2, -1, 1, 2, 1, 2];
@@ -23,5 +24,32 @@ function getGraph(n, m) {
 
 	return graph;
 }
-const res = getGraph(3, 5);
+
+function solution(n, m) {
+	const graph = getGraph(n, m);
+	let count = 0;
+	//k번째, v=현재노드, s=시작노드, 경로=graph, 지나온경로=mark
+	const tour = (k, v, s, graph, mark) => {
+		if (k === n * m && graph[v].includes(s)) {
+			count++;
+			mark[v] = k;
+			console.log(mark);
+		} else {
+			for (const next of graph[v]) {
+				// console.log(next);
+				// console.log(mark[next]);
+				if (!mark[next]) {
+					mark[next] = k + 1;
+					tour(k + 1, next, s, graph, mark);
+					mark[next] = 0; // 백트레킹 기법
+				}
+			}
+		}
+	};
+
+	tour(1, 0, 0, graph, []);
+
+	return count;
+}
+const res = solution(3, 10);
 console.log(res);
