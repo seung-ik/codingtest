@@ -9,7 +9,7 @@ function catalan1(n) {
 	}
 	let C = 0;
 	for (let i = 0; i <= n - 1; i++) {
-		C += catalan1(i) * catalan1(n - i - 1);
+		C += catalan1(i) * catalan1(n - 1 - i);
 	}
 	return C;
 }

@@ -29,7 +29,9 @@ function addEdge(origin, destination) {
 
 //Create the graph
 airports.forEach(addNode);
+console.log(adjacencyList, "?");
 routes.forEach((route) => addEdge(...route));
+console.log(adjacencyList, "?");
 
 //BFS
 function bfs(start) {
