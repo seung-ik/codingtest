@@ -20,3 +20,22 @@ function solution(x, y, n) {
 	}
 	return dp[y];
 }
+
+// 가장 간단한 dp
+function factorial(n) {
+	const dp = Array(n).fill(0);
+
+	const recurse = (k) => {
+		if (dp[k]) {
+			return dp[k];
+		} else if (k === 1) {
+			return 1;
+		} else {
+			dp[k] = k * recurse(k - 1);
+			return dp[k];
+		}
+	};
+
+	recurse(n);
+	return dp[n];
+}
